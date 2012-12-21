@@ -20,6 +20,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 Capybara.javascript_driver = :webkit
 
 RSpec.configure do |config|
+  config.order = :rand
   config.mock_with :mocha
 
   config.include FactoryGirl::Syntax::Default
