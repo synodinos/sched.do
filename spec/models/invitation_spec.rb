@@ -43,7 +43,8 @@ describe Invitation, '#invite' do
       sender = build_stubbed(:user)
       event = build_stubbed(:event)
       InvitationCreatedMessageJob.stubs(:enqueue)
-      invitation = Invitation.new(event: event, invitee: invitee, sender: sender)
+      invitation =
+        Invitation.new(event: event, invitee: invitee, sender: sender)
 
       invitation.invite
 
@@ -68,7 +69,8 @@ describe Invitation, '#invite' do
       sender = build_stubbed(:user)
       event = build_stubbed(:event)
       ActivityCreatorJob.stubs(:enqueue)
-      invitation = Invitation.new(event: event, invitee: invitee, sender: sender)
+      invitation =
+        Invitation.new(event: event, invitee: invitee, sender: sender)
       invitation.invite
 
       ActivityCreatorJob.should have_received(:enqueue).
@@ -82,7 +84,8 @@ describe Invitation, '#invite' do
       sender = build_stubbed(:guest)
       event = build_stubbed(:event)
       ActivityCreatorJob.stubs(:enqueue)
-      invitation = Invitation.new(event: event, invitee: invitee, sender: sender)
+      invitation =
+        Invitation.new(event: event, invitee: invitee, sender: sender)
       invitation.invite
 
       ActivityCreatorJob.should have_received(:enqueue).never
@@ -149,7 +152,7 @@ describe Invitation, '.deliver_automatic_reminders' do
     message.should have_received(:deliver).never
   end
 
-  it 'does not send an automatic reminder before the invitation is five days old' do
+  it 'does not send a reminder before the invitation is five days old' do
     Timecop.freeze do
       invitation = create(:invitation, created_at: Time.now)
       message = stub('message', delive: true)
@@ -172,7 +175,7 @@ describe Invitation, '.deliver_automatic_reminders' do
     message.should have_received(:deliver).never
   end
 
-  it 'does not send an automatic reminder when the invitee has already been reminded' do
+  it 'does not send a reminder when the invitee has already been reminded' do
     invitation = create(
       :invitation,
       created_at: 6.days.ago,

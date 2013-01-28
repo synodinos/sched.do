@@ -46,7 +46,8 @@ module FakeYammerApi
             id: #{@id},
             full_name: '#{@name}',
             jobTitle: 'test',
-            photo: 'https://mug0.assets-yammer.com/mugshot/images/48x48/7Xwtpq7zrtTdfmn-Rbs1ZkHCq8JwxBwW',
+            photo: 'https://mug0.assets-yammer.com/mugshot/images/48x48'\
+              '/7Xwtpq7zrtTdfmn-Rbs1ZkHCq8JwxBwW',
             ranking: 5
           }]
         }

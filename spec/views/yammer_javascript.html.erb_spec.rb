@@ -18,7 +18,8 @@ describe "app/views/shared/_yammer_javascript.html.erb" do
         view.stubs(signed_in?: false)
         render :partial => "shared/yammer_javascript"
 
-        rendered.should_not include('<meta property="yammer-network" content="1">')
+        rendered.
+          should_not include('<meta property="yammer-network" content="1">')
       end
     end
   end

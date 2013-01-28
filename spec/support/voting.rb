@@ -7,7 +7,8 @@ module VotingHelpers
     suggestion = Suggestion.find_by_primary!(suggestion_primary)
 
     within '.grid' do
-      find(".vote-count[data-id='#{suggestion.id}']").text.strip.should == vote_count.to_s
+      find(".vote-count[data-id='#{suggestion.id}']").text.strip.
+        should == vote_count.to_s
     end
   end
 
@@ -19,7 +20,8 @@ module VotingHelpers
     suggestion = Suggestion.find_by_primary!(suggestion_primary)
 
     within '.grid' do
-      find(".votable div[data-id='#{suggestion.id}'] input[name='commit']").click
+      find(".votable div[data-id='#{suggestion.id}'] input[name='commit']").
+        click
     end
   end
 end
