@@ -50,6 +50,7 @@ end
 
 group :test do
   gem 'bourne', require: false
+  gem 'cane'
   gem 'capybara-webkit', '~> 0.12.0'
   gem 'database_cleaner'
   gem 'email_spec'
