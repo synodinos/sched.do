@@ -5,6 +5,11 @@ $(document).ready(function(){
     return false;
   });
 
+  $('.vote').click(function() {
+    $('#dialog').dialog('open');
+    return false;
+  });
+
   $('.share-button').click( function(event) {
     event.preventDefault();
     var message = $('#dialog textarea').val();
