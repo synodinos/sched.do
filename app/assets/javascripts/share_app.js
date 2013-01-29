@@ -6,8 +6,9 @@ $(document).ready(function(){
     return false;
   });
 
-  $('.votable').one('click', '.vote', function() {
-    $('.share-event').dialog('open');
+  $('.vote').click(function() {
+    $('#dialog').dialog('open');
+    return false;
   });
 
   $('.share-button').click( function(event) {
