@@ -1,17 +1,18 @@
 $(document).ready(function(){
-  $('#dialog').dialog({ autoOpen: false, modal: true, width: 500 });
+  $('.dialog-modal').dialog({ autoOpen: false, modal: true, width: 500 });
+
   $('.dialog_link').click(function() {
-    $('#dialog').dialog('open');
+    $('.share-app').dialog('open');
     return false;
   });
 
   $('.votable').one('click', '.vote', function() {
-    $('#dialog').dialog('open');
+    $('.share-event').dialog('open');
   });
 
   $('.share-button').click( function(event) {
     event.preventDefault();
-    var message = $('#dialog textarea').val();
+    var message = $('.dialog-modal textarea').val();
 
     Scheddo.YammerApi.publicMessage(message);
 
