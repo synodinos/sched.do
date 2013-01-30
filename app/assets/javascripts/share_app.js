@@ -7,7 +7,7 @@ $(document).ready(function(){
   });
 
   $('.votable').one('click', '.vote', function() {
-    $('#dialog').dialog('open');
+    $('.share-event').dialog('open');
   });
 
   $('.share-button').click( function(event) {
