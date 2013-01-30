@@ -1,24 +1,8 @@
-Feature: User can share sched.do with her Yammer network
+Feature: User can share a sched.do event with her Yammer network
 
-  Scenario: User clicks 'Share sched.do'
-    Given I am signed in as 'Bruce Lee'
-    When I click 'Share sched.do'
-    Then I should see 'Share on your Yammer network'
-    And I should see 'Did you know you can send your own polls for free?'
-
-  @javascript
-  Scenario: User shares the app
-    Given I am signed in as 'Bruce Lee'
-    When I click 'Share sched.do'
-    And I share the sched.do application with my Yammer network
-    Then I should see 'Thank you for sharing sched.do!'
-
-  @javascript
-  Scenario: User unsuccessfully shares the app
-    Given I am signed in as 'Bruce Lee'
-    When I click 'Share sched.do'
-    And I share the sched.do app and get an error from the Yammer API
-    Then I should see 'There was an error with the request'
-
-
-
+  Scenario: User creates an event and votes
+    Given I am signed in as "Bruce Lee"
+    And I create an event named "Clown party" with a suggestion of "lunch"
+    When I vote for "lunch"
+    Then I should see "Share sched.do with your coworkers"
+    And I should see "I voted on a poll in sched.do"

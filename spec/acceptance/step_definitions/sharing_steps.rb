@@ -7,3 +7,7 @@ step 'I share the sched.do app and get an error from the Yammer API' do
   mock_failed_yam_request
   click_button 'Share'
 end
+
+step 'I close the share sched.do modal' do
+  find(".ui-dialog-titlebar-close").click
+end
