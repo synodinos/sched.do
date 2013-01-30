@@ -72,20 +72,19 @@
   }
 }
 
-.ui-widget-content {
+.ui-datepicker {
   background-color: #333;
   @include background-image(linear-gradient(#555, #000));
   border: 1px solid #000;
-  
-  &.ui-dialog, .ui-dialog {
-    background-color: transparent;
-    border: none;
-  }
-  
   @include border-radius(3px);
   @include box-shadow(inset 0 1px 0 #999, 0 1px 5px #aaa, inset 0 -1px 0 #333);
   color: #fff;
-    
+  
+  &.ui-dialog {
+    background-color: transparent;
+    border: none;
+  }
+
   a {
     color: #222222;
   }
