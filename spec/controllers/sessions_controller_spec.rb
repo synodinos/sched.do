@@ -21,6 +21,17 @@ describe SessionsController, '#create' do
     User.count.should == 1
   end
 
+  it 'fetches new Yammer user data' do
+    user_data_fetcher = stub(:fetch)
+    UserDataFetcher.stubs(new: user_data_fetcher)
+    stub_omniauth_env
+
+    post :create
+
+    UserDataFetcher.should have_received(:new)
+    user_data_fetcher.should have_received(:fetch)
+  end
+
   it 'signs out a guest when a Yammer user signs in' do
     session[:name] = 'Joe Schmoe'
     session[:email] = 'joe@example.com'

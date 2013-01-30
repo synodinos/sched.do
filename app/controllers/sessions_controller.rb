@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
 
   def create
     user = find_or_create_with_auth
-    user.fetch_yammer_user_data
-    cookies.signed[:yammer_user_id] = user.yammer_user_id
+    updated_user = UserDataFetcher.new(user).fetch
+    cookies.signed[:yammer_user_id] = updated_user.yammer_user_id
     log_out_guest
 
     redirect_to after_sign_in_path

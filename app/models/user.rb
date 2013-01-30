@@ -27,21 +27,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  def fetch_yammer_user_data
-    response = yammer_user_data
-    update_attributes(
-      {
-        email: parse_email_from_response(response),
-        image: response[:mugshot_url],
-        name: response[:full_name],
-        nickname: response[:name],
-        yammer_profile_url: response[:web_url],
-        yammer_network_id: response[:network_id],
-        extra: response
-      },
-      { without_protection: true }
-    )
-  end
+  # def fetch_yammer_user_data
+  #   response = yammer_user_data
+  #   update_attributes(
+  #     {
+  #       email: parse_email_from_response(response),
+  #       image: response[:mugshot_url],
+  #       name: response[:full_name],
+  #       nickname: response[:name],
+  #       yammer_profile_url: response[:web_url],
+  #       yammer_network_id: response[:network_id],
+  #       extra: response
+  #     },
+  #     { without_protection: true }
+  #   )
+  # end
 
   def image
     self[:image] || 'http://' + ENV['HOSTNAME'] + '/assets/no_photo.png'
@@ -83,15 +83,15 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def yammer_client
-    @yam ||= Yam.new(access_token, yammer_endpoint)
-  end
+  # def yammer_client
+  #   @yam ||= Yam.new(access_token, yammer_endpoint)
+  # end
 
   private
 
-  def yammer_user_data
-    yammer_client.get("/users/#{yammer_user_id}")
-  end
+  # def yammer_user_data
+  #   yammer_client.get("/users/#{yammer_user_id}")
+  # end
 
   def associate_each_invitation_with(guest)
     guest.invitations.each do |invitation|
@@ -111,10 +111,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def parse_email_from_response(response)
-    response['contact']['email_addresses'].
-      detect{ |address| address['type'] == 'primary' }['address']
-  end
+  # def parse_email_from_response(response)
+  #   response['contact']['email_addresses'].
+  #     detect{ |address| address['type'] == 'primary' }['address']
+  # end
 
   def yammer_endpoint
     yammer_staging ? YAMMER_STAGING_ENDPOINT : YAMMER_ENDPOINT
