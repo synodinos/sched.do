@@ -3,6 +3,7 @@ Feature: User can share a sched.do event with her Yammer network
   Scenario: User creates an event and votes
     Given I am signed in as "Bruce Lee"
     And I create an event named "Clown party" with a suggestion of "lunch"
+    And I view the "Clown party" event
     When I vote for "lunch"
 <<<<<<< HEAD
 <<<<<<< HEAD

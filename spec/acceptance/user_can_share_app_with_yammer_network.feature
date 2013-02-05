@@ -3,7 +3,7 @@ Feature: User can share sched.do with her Yammer network
   Scenario: User clicks "Share sched.do"
     Given I am signed in as "Bruce Lee"
     When I click "Share sched.do"
-    Then I should see "Share on your Yammer network"
+    Then I should see "Share on the Thoughtbot network"
     And I should see "Did you know you can send your own polls for free?"
 
   @javascript
