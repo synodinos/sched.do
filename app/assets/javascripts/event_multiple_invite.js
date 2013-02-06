@@ -2,7 +2,10 @@ $(document).ready(function(){
   $.widget(
     'custom.yammerAutocomplete',
     $.ui.autocomplete,
-    Scheddo.autocompleteConfiguration(Scheddo.Translators.AutocompleteAsyncronousPost)
+    Scheddo.autocompleteConfiguration({
+      translator: Scheddo.Translators.AutocompleteAsyncronousPost,
+      autocompleteListSelector: '.invitation-autocomplete-suggestions'
+    })
   );
 
   $("input[data-role='invitation_name']").yammerAutocomplete();

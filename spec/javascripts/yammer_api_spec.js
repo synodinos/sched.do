@@ -35,16 +35,30 @@ describe('Scheddo.YammerApi.autocomplete', function(){
 
 
   describe('ranked', function(){
-    it('passes the correct arguments to yam.request', function(){
+    it('passes the correct default arguments to yam.request', function(){
       var term = 'foobar';
       var translateResponseData = jasmine.createSpy('translateResponseData');
       var autocomplete = Scheddo.YammerApi.autocomplete({});
       spyOn(autocomplete, 'translateResponseData').andReturn(translateResponseData);
-      autocomplete.ranked(term);
+      autocomplete.ranked(term, null);
       expect(yam.request).toHaveBeenCalledWith({
         url: '/api/v1/autocomplete/ranked',
         method: 'GET',
         data: {'prefix':term,'models' :'user:3,group:2'},
+        success: translateResponseData
+      });
+    });
+
+    it('passes the correct argument for setting max user results to yam.request', function(){
+      var term = 'foobar';
+      var translateResponseData = jasmine.createSpy('translateResponseData');
+      var autocomplete = Scheddo.YammerApi.autocomplete({});
+      spyOn(autocomplete, 'translateResponseData').andReturn(translateResponseData);
+      autocomplete.ranked(term, null, 99);
+      expect(yam.request).toHaveBeenCalledWith({
+        url: '/api/v1/autocomplete/ranked',
+        method: 'GET',
+        data: {'prefix':term,'models' :'user:99,group:2'},
         success: translateResponseData
       });
     });

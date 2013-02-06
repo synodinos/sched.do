@@ -5,7 +5,19 @@
 if(Scheddo.YammerApi.isYammerUser()){
   $.widget('custom.yammerAutocomplete',
     $.ui.autocomplete,
-      Scheddo.autocompleteConfiguration(Scheddo.Translators.AutocompletePost));
+      Scheddo.autocompleteConfiguration({
+        translator: Scheddo.Translators.AutocompletePost,
+        autocompleteListSelector: '.invitation-autocomplete-suggestions'
+      }));
 
-  $("input[data-role='invitation_name']").yammerAutocomplete();
+  $.widget('custom.yammerShareAutocomplete',
+    $.ui.autocomplete,
+      Scheddo.autocompleteConfiguration({
+        translator: Scheddo.Translators.eventShare,
+        autocompleteListSelector: '.share-event .invitation-autocomplete-suggestions',
+        maxUsersReturned: 0
+      }));
+
+  $('#auto-complete').yammerAutocomplete();
+  $('.share-event #auto-complete').yammerShareAutocomplete();
 }

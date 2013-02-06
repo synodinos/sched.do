@@ -7,9 +7,9 @@ Scheddo.YammerApi = {
     return typeof this.userAccessToken !== 'undefined';
   },
 
-	setAccessToken: function(token){
-	  yam.request.setAuthenticator('oauth2');
-	  yam.request.getAuthenticator({ auth: 'oauth2' }).setAuthToken(token);
+  setAccessToken: function(token){
+    yam.request.setAuthenticator('oauth2');
+    yam.request.getAuthenticator({ auth: 'oauth2' }).setAuthToken(token);
   },
 
   publicMessage: function(message){
@@ -31,21 +31,24 @@ Scheddo.YammerApi = {
   },
 
   autocomplete: function(translator){
-    var maxUsersReturned = 3;
     var maxGroupsReturned = 2;
     return {
-	    ranked: function(term, response){
-	      var options = {
-	        url: '/api/v1/autocomplete/ranked',
-	        method: 'GET',
-	        data: {
+      ranked: function(term, response, maxUsersReturned){
+        if(typeof maxUsersReturned === 'undefined') {
+          maxUsersReturned = 3
+        };
+
+        var options = {
+          url: '/api/v1/autocomplete/ranked',
+          method: 'GET',
+          data: {
             prefix: term,
             models: 'user:' + maxUsersReturned + ',group:' + maxGroupsReturned},
-	        success: this.translateResponseData(term, response)
-	      };
+          success: translator.normalizeTranslatedResponse(term, response)
+        };
 
-	      yam.request(options);
-	    },
+        yam.request(options);
+      },
 
       getUser: function(id, displayCallback){
         var options = {
@@ -71,18 +74,6 @@ Scheddo.YammerApi = {
         };
 
         yam.request(options);
-      },
-
-      translateResponseData: function(term, response){
-        return function(yammerData){
-          var users = translator.translateUsers(yammerData.user);
-          var groups = translator.translateGroups(yammerData.group);
-          var email = translator.translateEmail(term);
-          var items = users.concat(groups);
-          items.push(email);
-
-          response(items);
-        };
       }
     }
   }

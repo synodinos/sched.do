@@ -18,12 +18,22 @@
               </textarea>
             </li>
             <li>
-              <div id="auto-complete">
-              </div>
+              <input type="text" id="auto-complete" />
+              <div class="invitation-autocomplete-suggestions" />
             </li>
           </div>
         </ol>
       </fieldset>
+
+      <%= render 'javascript_templates/multiple_invitation_templates' %>
+
+      <div id="invitees">
+        <section id='groups' class="groups invited-yammer-groups invited">
+          <h4>Invited Yammer Groups</h4>
+
+          <h5 id="invite_groups">Add an entire group to your invite list.</h5> <ul class="invited-groups list-invitees"> </ul>
+        </section>
+      </div>
 
       <fieldset class="actions">
         <ol>

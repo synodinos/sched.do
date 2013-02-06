@@ -37,6 +37,20 @@ Scheddo.Translators = {
           data('ui-autocomplete-item', this);
       }
     }
-  }
+  },
 };
 
+Scheddo.Translators.FullResults = {
+  normalizeTranslatedResponse: function(term, response){
+    var self = this;
+    return function(yammerData){
+      var users = self.translateUsers(yammerData.user);
+      var groups = self.translateGroups(yammerData.group);
+      var email = self.translateEmail(term);
+      var items = users.concat(groups);
+      items.push(email);
+
+      response(items);
+    }
+  }
+};

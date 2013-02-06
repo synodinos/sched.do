@@ -1,6 +1,6 @@
 Namespaced.declare('Scheddo.Translators');
 
-Scheddo.Translators.AutocompleteAsyncronousPost = (function(){
+Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
   var completedPost = function(objectToRemove){
     if(Scheddo.Util.inviteeQueue.length === 1){
       $('#new_event').unbind('submit');
@@ -141,4 +141,4 @@ Scheddo.Translators.AutocompleteAsyncronousPost = (function(){
       return self.addMethodsToEmail(email);
     }
   };
-})();
+})(), Scheddo.Translators.FullResults);

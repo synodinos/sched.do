@@ -14,8 +14,12 @@ end
 
 step 'I choose to share sched.do with the Yammer group :group_name' do |group_name|
   mock_out_yammer_api(name: group_name, id: 1, return_type: 'group')
+  fill_in_autocomplete(group_name, '.share-event')
+  choose_autocomplete('.name', group_name, '.share-event')
+end
+
+step 'I should see :group_name in the share event dialog groups list' do |group_name|
   within('.share-event') do
-    fill_in_autocomplete(group_name)
-    choose_autocomplete('.name', group_name)
+    page.should have_content group_name
   end
 end

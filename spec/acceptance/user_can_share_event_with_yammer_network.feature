@@ -32,4 +32,4 @@ Feature: User can share a sched.do event with her Yammer network
     When I view the "Clown party" event
     And I vote for "lunch"
     And I choose to share sched.do with the Yammer group "sched.do-developers"
-    Then I should see "scheddo-developers" in the groups list
+    Then I should see "scheddo-developers" in the share event dialog groups list
