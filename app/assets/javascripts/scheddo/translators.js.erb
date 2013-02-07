@@ -54,3 +54,73 @@ Scheddo.Translators.FullResults = {
     }
   }
 };
+
+Scheddo.Translators.Requests = {
+  completedPost: function(objectToRemove){
+    if(Scheddo.Util.inviteeQueue.length === 1){
+      $('#new_event').unbind('submit');
+      $('#new_event').submit();
+    }
+    else{
+      Scheddo.Util.removeInviteeFromQueue(objectToRemove);
+    }
+  },
+
+  userAsync: function(user, eventId){
+    var self = this;
+    $.ajax({
+      type: 'POST',
+      url: '<%= Rails.application.routes.url_helpers.yammer_user_invitations_path %>',
+      data: {
+        invitation: {
+          event_id: eventId,
+          invitee_attributes: {
+            yammer_user_id: user.id
+          }
+        }
+      },
+      complete: function(data, status, xhr){
+        self.completedPost(user);
+      },
+    });
+  },
+
+  groupAsync: function(group, eventId){
+    var self = this;
+    $.ajax({
+      type: 'POST',
+      url: '<%= Rails.application.routes.url_helpers.yammer_group_invitations_path %>',
+      data: {
+        invitation: {
+          event_id: eventId,
+          invitee_attributes: {
+            name_or_email: group.fullName,
+            yammer_group_id: group.id
+          }
+        }
+      },
+      complete: function(data, status, xhr){
+        self.completedPost(group);
+      }
+    });
+  },
+
+  emailAsync: function(email, eventId){
+    var self = this;
+    $.ajax({
+      type: 'POST',
+      url: '<%= Rails.application.routes.url_helpers.invitations_path %>',
+      data: {
+        invitation: {
+          event_id: eventId,
+          invitee_attributes: {
+            name_or_email: email.value,
+          }
+        }
+      },
+      complete: function(data, status, xhr){
+        self.completedPost(email);
+      }
+    });
+  }
+};

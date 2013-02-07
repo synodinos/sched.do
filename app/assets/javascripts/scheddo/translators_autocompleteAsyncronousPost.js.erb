@@ -1,16 +1,6 @@
 Namespaced.declare('Scheddo.Translators');
 
 Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
-  var completedPost = function(objectToRemove){
-    if(Scheddo.Util.inviteeQueue.length === 1){
-      $('#new_event').unbind('submit');
-      $('#new_event').submit();
-    }
-    else{
-      Scheddo.Util.removeInviteeFromQueue(objectToRemove);
-    }
-  };
-
   var setRemoveClickEvent = function(markup, invitee){
     markup.children('.remove').click(function(){
       Scheddo.Util.removeInviteeFromQueue(invitee);
@@ -30,21 +20,10 @@ Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
       };
 
       user.post = function(eventId){
-        $.ajax({
-          type: 'POST',
-          url: '<%= Rails.application.routes.url_helpers.yammer_user_invitations_path %>',
-          data: {
-            invitation: {
-              event_id: eventId,
-              invitee_attributes: {
-                yammer_user_id: user.id
-              }
-            }
-          },
-          complete: function(data, status, xhr){
-            completedPost(user);
-          },
-        });
+        Scheddo.
+          Translators.
+          Requests.
+          userAsync(user, eventId);
       };
 
       return user;
@@ -69,22 +48,10 @@ Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
       };
 
       group.post = function(eventId){
-        $.ajax({
-          type: 'POST',
-          url: '<%= Rails.application.routes.url_helpers.yammer_group_invitations_path %>',
-          data: {
-            invitation: {
-              event_id: eventId,
-              invitee_attributes: {
-                name_or_email: group.fullName,
-                yammer_group_id: group.id
-              }
-            }
-          },
-          complete: function(data, status, xhr){
-            completedPost(group);
-          }
-        });
+        Scheddo.
+          Translators.
+          Requests.
+          groupAsync(group, eventId);
       };
 
       return group;
@@ -115,21 +82,10 @@ Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
       };
 
       email.post = function(eventId){
-        $.ajax({
-          type: 'POST',
-          url: '<%= Rails.application.routes.url_helpers.invitations_path %>',
-          data: {
-            invitation: {
-              event_id: eventId,
-              invitee_attributes: {
-                name_or_email: email.value,
-              }
-            }
-          },
-          complete: function(data, status, xhr){
-            completedPost(email);
-          }
-        });
+        Scheddo.
+          Translators.
+          Requests.
+          emailAsync(email, eventId);
       };
 
       return email;
