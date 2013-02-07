@@ -1,22 +1,13 @@
 Namespaced.declare('Scheddo.Translators');
 
-Scheddo.Translators.eventShare = (function(){
-  var setRemoveClickEvent = function(markup, invitee){
-    markup.children('.remove').click(function(){
-      Scheddo.Util.removeInviteeFromQueue(invitee);
-      markup.remove();
-    });
-  };
-
-  return {
+Scheddo.Translators.eventShare = {
     addMethodsToGroup: function(group){
       group.submit = function(event, form){
         Scheddo.Util.inviteeQueue.push(group);
-        markup = $(Scheddo.Templates.getGroupInviteeTemplate(group));
-        setRemoveClickEvent(markup, group);
-
-        $('#invite_groups').hide();
-        $('.invited-groups.list-invitees').append(markup);
+        Scheddo.
+          Translators.
+          RenderInInviteeList.
+          renderUser(user);
       };
 
       return group;
@@ -39,4 +30,4 @@ Scheddo.Translators.eventShare = (function(){
       }
     }
   }
-})();
+};

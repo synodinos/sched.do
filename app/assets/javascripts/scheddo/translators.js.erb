@@ -88,7 +88,7 @@ Scheddo.Translators.RenderInInviteeList = {
   }
 };
 
-Scheddo.Translators.Requests = {
+Scheddo.Translators.Requests.Async = {
   completedPost: function(objectToRemove){
     if(Scheddo.Util.inviteeQueue.length === 1){
       $('#new_event').unbind('submit');
@@ -155,5 +155,26 @@ Scheddo.Translators.Requests = {
         self.completedPost(email);
       }
     });
+  }
+};
+
+Scheddo.Translators.Requests.Sync = {
+  userSync: function(user, eventId){
+    var inviteeFormAction = '<%= Rails.application.routes.url_helpers.yammer_user_invitations_path %>';
+    form.attr('action', inviteeFormAction);
+    Scheddo.Util.dataRoleUpdater(userObject.id, event.target, 'yammer_user_id');
+    form.submit();
+  },
+
+  groupSync: function(group, eventId){
+    $('#auto-complete').val(group.fullName);
+    var inviteeFormAction = '<%= Rails.application.routes.url_helpers.yammer_group_invitations_path %>';
+    form.attr('action', inviteeFormAction);
+    Scheddo.Util.dataRoleUpdater(groupObject.id, event.target, 'yammer_group_id');
+    form.submit();
+  },
+
+  emailSync: function(email, eventId){
+    form.submit();
   }
 };
