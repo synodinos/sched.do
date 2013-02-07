@@ -1,22 +1,15 @@
 Namespaced.declare('Scheddo.Translators');
 
 Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
-  var setRemoveClickEvent = function(markup, invitee){
-    markup.children('.remove').click(function(){
-      Scheddo.Util.removeInviteeFromQueue(invitee);
-      markup.remove();
-    });
-  };
 
   return {
     addMethodsToUser: function(user){
       user.submit = function(event, form){
         Scheddo.Util.inviteeQueue.push(user);
-        var markup = $(Scheddo.Templates.getUserInviteeTemplate(user));
-        setRemoveClickEvent(markup, user);
-
-        $('.users.list-invitees').append(markup);
-        $('#invite_users').hide();
+        Scheddo.
+          Translators.
+          RenderInInviteeList.
+          renderUser(user);
       };
 
       user.post = function(eventId){
@@ -40,11 +33,10 @@ Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
     addMethodsToGroup: function(group){
       group.submit = function(event, form){
         Scheddo.Util.inviteeQueue.push(group);
-        markup = $(Scheddo.Templates.getGroupInviteeTemplate(group));
-        setRemoveClickEvent(markup, group);
-
-        $('#invite_groups').hide();
-        $('.invited-groups.list-invitees').append(markup);
+        Scheddo.
+          Translators.
+          RenderInInviteeList.
+          renderGroup(group);
       };
 
       group.post = function(eventId){
@@ -73,11 +65,10 @@ Scheddo.Translators.AutocompleteAsyncronousPost = _.extend((function(){
         }
         else{
           Scheddo.Util.inviteeQueue.push(email);
-          markup = $(Scheddo.Templates.getEmailInviteeTemplate(email));
-          setRemoveClickEvent(markup, email);
-
-          $('#invite_users').hide();
-          $('.users.list-invitees').append(markup);
+          Scheddo.
+            Translators.
+            RenderInInviteeList.
+            renderEmail(email);
         }
       };
 
