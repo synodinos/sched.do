@@ -3,7 +3,7 @@ $(document).ready(function(){
     'custom.yammerAutocomplete',
     $.ui.autocomplete,
     Scheddo.autocompleteConfiguration({
-      translator: Scheddo.Translators.AutocompleteAsyncronousPost,
+      translator: Scheddo.Translators.MultiInvite,
       autocompleteListSelector: '.invitation-autocomplete-suggestions'
     })
   );

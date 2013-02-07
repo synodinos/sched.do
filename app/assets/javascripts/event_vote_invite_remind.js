@@ -6,7 +6,7 @@ if(Scheddo.YammerApi.isYammerUser()){
   $.widget('custom.yammerAutocomplete',
     $.ui.autocomplete,
       Scheddo.autocompleteConfiguration({
-        translator: Scheddo.Translators.AutocompletePost,
+        translator: Scheddo.Translators.SingleInvite,
         autocompleteListSelector: '.invitation-autocomplete-suggestions'
       }));
 

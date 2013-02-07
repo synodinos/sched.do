@@ -1,6 +1,6 @@
 Namespaced.declare('Scheddo.Translators');
 
-Scheddo.Translators.AutocompletePost = _.extend({
+Scheddo.Translators.SingleInvite = _.extend({
   translateUsers: function(userData){
     return _(userData).map(function(userObject) {
       var user = Scheddo.Translators.translateUser(userObject);
