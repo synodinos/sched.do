@@ -7,9 +7,9 @@ Scheddo.Translators.SingleInvite = _.extend({
       user.submit = function(event, form){
         Scheddo.
           Translators.
-          Request.
+          Requests.
           Sync.
-          userSync(event, form);
+          userSync(event, form, userObject);
       };
 
       return user;
@@ -22,9 +22,9 @@ Scheddo.Translators.SingleInvite = _.extend({
       group.submit = function(event, form){
         Scheddo.
           Translators.
-          Request.
+          Requests.
           Sync.
-          groupSync(event, form);
+          groupSync(event, form, groupObject);
       };
 
       return group;
@@ -36,7 +36,7 @@ Scheddo.Translators.SingleInvite = _.extend({
     email.submit = function(event, form){
       Scheddo.
         Translators.
-        Request.
+        Requests.
         Sync.
         emailSync(event, form);
     }

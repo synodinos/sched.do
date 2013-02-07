@@ -70,16 +70,15 @@ Scheddo.Translators.Requests.Async = {
   }
 };
 
-
 Scheddo.Translators.Requests.Sync = {
-  userSync: function(event, form){
+  userSync: function(event, form, userObject){
     var inviteeFormAction = '<%= Rails.application.routes.url_helpers.yammer_user_invitations_path %>';
     form.attr('action', inviteeFormAction);
     Scheddo.Util.dataRoleUpdater(userObject.id, event.target, 'yammer_user_id');
     form.submit();
   },
 
-  groupSync: function(event, form){
+  groupSync: function(event, form, groupObject){
     $('#auto-complete').val(group.fullName);
     var inviteeFormAction = '<%= Rails.application.routes.url_helpers.yammer_group_invitations_path %>';
     form.attr('action', inviteeFormAction);
