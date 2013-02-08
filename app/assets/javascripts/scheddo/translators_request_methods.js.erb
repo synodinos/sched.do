@@ -79,7 +79,7 @@ Scheddo.Translators.Requests.Sync = {
   },
 
   groupSync: function(event, form, groupObject){
-    $('#auto-complete').val(group.fullName);
+    form.find('#auto-complete').val(groupObject.fullName);
     var inviteeFormAction = '<%= Rails.application.routes.url_helpers.yammer_group_invitations_path %>';
     form.attr('action', inviteeFormAction);
     Scheddo.Util.dataRoleUpdater(groupObject.id, event.target, 'yammer_group_id');
