@@ -1,5 +1,55 @@
 .dialog-modal {
   @extend .sheet;
+
+  #invitees {
+  section.invited-yammer-groups {
+    border: 1px solid darken($bg-color, 20%);
+    @include border-radius(4px 4px 0 0);
+
+    h4 {
+      background-color: $bg-color;
+      @include background-image(linear-gradient(#fff, darken($bg-color, 2%)));
+      border-bottom: 1px solid darken($bg-color, 20%);
+      @include border-radius(3px 3px 0 0);
+      margin-bottom: 0px;
+      padding: 10px 15px;
+    }
+
+    ul.groups {
+      margin: 0;
+      padding: 0px 10px;
+
+      li {
+        border-bottom: 1px solid darken($bg-color, 10%);
+        list-style: none;
+        padding: 0.8em 0px;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        div.group-name {
+          @extend %group-label;
+        }
+
+        a.group-reminder {
+          background: lighten($bg-color, 1%);
+          border: 1px solid darken($bg-color, 2%);
+          @include border-radius(3px);
+          color: darken($bg-color, 20%);
+          display: block;
+          float: right;
+          font-size: 0.9em;
+          padding: 0.5em 1em;
+
+          &:hover {
+            @extend .light-cta-button;
+          }
+        }
+      }
+    }
+  }
+  }
 }
 
 .ui-helper-hidden {
