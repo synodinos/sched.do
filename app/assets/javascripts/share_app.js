@@ -7,7 +7,11 @@ $(document).ready(function(){
   });
 
   $('.votable').one('click', '.vote', function() {
-    $('.share-event').dialog('open');
+    $('.share-event')
+    .delay(800)
+    .queue(function() {
+      $(this).dialog('open')
+    });
   });
 
   $('.share-button').click( function(event) {

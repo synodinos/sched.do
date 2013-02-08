@@ -26,10 +26,10 @@ Feature: User can share a sched.do event with her Yammer network
     And I should see "I created an event in sched.do"
 
   @javascript
-  Scenario: User votes on an event she didn't create
+  Scenario: User votes on an event and shares sched.do with a group
     Given someone created an event named "Clown party" with a suggestion of "lunch"
     And I am signed in as "Bruce Lee"
     When I view the "Clown party" event
     And I vote for "lunch"
-    And I choose to share sched.do with the Yammer group "sched.do-developers"
+    And I choose to share sched.do with the Yammer group "scheddo-developers"
     Then I should see "scheddo-developers" in the share event dialog groups list

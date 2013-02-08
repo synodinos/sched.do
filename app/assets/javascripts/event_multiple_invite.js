@@ -52,7 +52,7 @@ $(document).ready(function(){
       _.each(inviteesGroupedByType['user'], function(invitee){
         Scheddo.
           Translators.
-          AutocompleteAsyncronousPost.
+          MultiInvite.
           addMethodsToUser(invitee).
           submit();
       });
@@ -60,7 +60,7 @@ $(document).ready(function(){
       _.each(inviteesGroupedByType['group'], function(invitee){
         Scheddo.
           Translators.
-          AutocompleteAsyncronousPost.
+          MultiInvite.
           addMethodsToGroup(invitee).
           submit();
       });
@@ -68,7 +68,7 @@ $(document).ready(function(){
       _.each(inviteesGroupedByType['email'], function(invitee){
         Scheddo.
           Translators.
-          AutocompleteAsyncronousPost.
+          MultiInvite.
           addMethodsToEmail(invitee).
           submit();
       });
