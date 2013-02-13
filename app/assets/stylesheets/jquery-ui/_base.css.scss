@@ -2,6 +2,9 @@
   @extend .sheet;
 
   #invitees {
+    padding:1em 0;
+    border-bottom:1px dashed #e3f3f6;
+
   section.invited-yammer-groups {
     border: 1px solid darken($bg-color, 20%);
     @include border-radius(4px 4px 0 0);
@@ -13,6 +16,10 @@
       @include border-radius(3px 3px 0 0);
       margin-bottom: 0px;
       padding: 10px 15px;
+    }
+
+    h5 {
+      @extend %blank;
     }
 
     ul.groups {

@@ -1,40 +1,32 @@
 <div class="hide-modal">
   <div class="dialog-modal share-event">
-    <h2>Share this event with your coworkers</h2>
+    <h2>Thanks for voting, please share Sched.do</h2>
     <form>
       <fieldset class="inputs">
         <ol>
+          <div class="suggestions">
+            <p>Invite Yammer groups to join the Sched.do app</p>
+          </div>
+          <li>
+            <input type="text" id="auto-complete" placeholder="Ex. Sales Team" />
+            <div class="invitation-autocomplete-suggestions" /></div>
+            <div id="invitees">
+              <section class="groups invited-yammer-groups invited">
+                <h4>Invited Yammer Groups</h4>
+                <h5 id="invite_groups">Add an entire group to your invite list. If no specific groups are selected, this message will be sent to your company's feed.</h5>
+                <ul class="invited-groups list-invitees"> </ul>
+              </section>
+            </div>
+          </li>
           <div class="suggestions">
             <p>Customize message</p>
           </div>
           <div class="nested-field">
             <li>
-              <textarea rows="4" cols="50">
-                  <% if current_user == @event.owner %>
-                    I created an event in sched.do
-                  <% else %>
-                    I voted on an event in sched.do
-                  <% end %>
-              </textarea>
+              <textarea rows="4" cols="50"><% if current_user == @event.owner %>I created an event in sched.do, make scheduling meetings easier by joining.<% else %>I voted on an event in sched.do, make scheduling meetings easier by joining.<% end %></textarea>
             </li>
-            <li>
-              <input type="text" id="auto-complete" />
-              <div class="invitation-autocomplete-suggestions" />
-            </li>
-          </div>
-        </ol>
+          </ol>
       </fieldset>
-
-      <%= render 'javascript_templates/multiple_invitation_templates' %>
-
-      <div id="invitees">
-        <section class="groups invited-yammer-groups invited">
-          <h4>Invited Yammer Groups</h4>
-
-          <div id="invite_groups">Add an entire group to your invite list.</div>
-          <ul class="invited-groups list-invitees"> </ul>
-        </section>
-      </div>
 
       <fieldset class="actions">
         <ol>
@@ -44,3 +36,4 @@
     </form>
   </div>
 </div>
+<%= render 'javascript_templates/multiple_invitation_templates' %>
