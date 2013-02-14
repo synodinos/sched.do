@@ -1,5 +1,5 @@
 <%= link_to 'Click Here',
-      event_url(event, guest_email: email),
+  event_url(event, guest_email: email, utm_source: source, utm_medium: medium, utm_campaign: campaign),
       html_options = {
         style: 'background-color: #30AADE;
         border: 1px solid #0F7CC4;
