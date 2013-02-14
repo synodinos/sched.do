@@ -66,10 +66,6 @@ group :development, :test do
   gem 'sham_rack'
 end
 
-group :development, :test, :tddium_ignore do
-  gem 'pry'
-end
-
 group :staging, :production do
   gem 'sprockets-redirect'
 end
