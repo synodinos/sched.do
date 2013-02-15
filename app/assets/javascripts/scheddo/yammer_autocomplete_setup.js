@@ -56,7 +56,6 @@ Scheddo.autocompleteConfiguration = function(options){
         $('#auto-complete').val('');
       },
       select: function(event, ui) {
-        $('#auto-complete').val(ui.item.value);
         ui.item.submit(event, $(this).parents('form'));
       },
       source: function(request, response) {

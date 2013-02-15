@@ -8,6 +8,8 @@ Scheddo.Translators.eventShare = {
         Translators.
         RenderInInviteeList.
         renderGroup(group);
+
+      $('.shave-event #auto-complete').val('');
     };
 
     return group;
