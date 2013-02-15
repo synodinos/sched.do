@@ -2,15 +2,16 @@
 
 <p>
   <%= image_tag(@event.owner.image) %>
-  Thanks for helping <strong><%= @event.owner %></strong> with <%=
-  link_to @event.name,
+  Thanks for helping <strong><%= @event.owner %></strong> with
+  <%= link_to @event.name,
     event_url(
       @event,
       source: 'vote-confirmation',
       medium: 'email',
       campaign: 'sched.do'
     ),
-    html_options = { style: 'color: #EC6E4D' } %>.
+    html_options = { style: 'color: #EC6E4D' }
+  %>.
 </p>
 
 <p>You voted for:</p>
@@ -19,7 +20,13 @@
 
 <p>
   Click here to change your vote or see the results.
-  <%= render 'click_here', event: @event, email: @user.email, source: 'vote-confirmation', medium: 'email', campaign: 'sched.do' %>
+  <%= render 'click_here',
+    event: @event,
+    email: @user.email,
+    source: 'vote-confirmation',
+    medium: 'email',
+    campaign: 'sched.do'
+  %>
 </p>
 
 <% if @user != @event.owner %>
